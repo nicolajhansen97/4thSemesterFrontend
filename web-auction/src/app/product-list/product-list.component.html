@@ -1,0 +1,27 @@
+<h2>Items on auction:</h2>
+
+<table>
+    <tr>
+          <th>No</th>
+          <th>Name</th>
+          <th>Current Price</th>
+          <th> </th>
+    </tr>
+        <tr *ngFor="let product of products; index as i">
+            <td> {{product.no}}  </td>  
+            <td> {{product.name}} </td>
+            <td> {{product.price | currency:' Euro '}} </td>
+            <button (click)="placeBid(i)"> Bid </button>
+        </tr>  
+</table>
+
+<!--  
+<ul>
+    <li>  {{products[0].no}}  {{products[0].name}}   {{products[0].price}} </li>
+    <li>  {{products[1].no }}   </li>
+    <li>  {{products[2].no}}</li>
+</ul>
+   
+-->
+
+
