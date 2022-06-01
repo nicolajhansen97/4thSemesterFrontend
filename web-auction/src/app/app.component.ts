@@ -7,6 +7,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'new-app';
+  public picture: string="/assets/images/plant.png";
 
   constructor(){
     console.log("RootComponent, constructed");
