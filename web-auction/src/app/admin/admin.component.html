@@ -1,0 +1,28 @@
+<h2>Items on auction:</h2>
+<table>
+    <tr>
+          <th>No</th>
+          <th>Name</th>
+          <th>Current Price</th>
+          <th></th>
+          <th></th>
+          <th></th>
+    </tr>
+        <tr *ngFor="let product of products; index as i">
+            <td> <input [(ngModel)]="product.no" [readonly]='readOnly[i]'> </td>  
+            <td> <input [(ngModel)]="product.name" [readonly]='readOnly[i]'> </td>
+            <td> <input [(ngModel)]="product.price" [readonly]='readOnly[i]'> </td>
+            <td> <input [(ngModel)]="product.barCode" [readonly]='readOnly[i]'> </td>
+            <td> <button type="button" class="btn btn-warning"  (click) = 'edit(i)'>Edit</button> </td>
+            <td> <button type="button" class="btn btn-secondary"  (click) = 'save(i)'>Save</button> </td>
+            <td> <button type="button" class="btn btn-danger"  (click) = 'delete(i)'>Remove</button> </td>
+        </tr>  
+    <tr>
+            <td><input type="text" [(ngModel)]="defaultProduct.no"> </td>
+            <td><input type="text" [(ngModel)]="defaultProduct.name" ></td>
+            <td><input type="text" [(ngModel)]="defaultProduct.price"></td>
+            <td><input type="text" [(ngModel)]="defaultProduct.barCode"></td>
+            <td> <button type="button" class="btn btn-primary" (click) ='create()' >Create this Product</button> </td>
+    </tr>
+</table>
+
