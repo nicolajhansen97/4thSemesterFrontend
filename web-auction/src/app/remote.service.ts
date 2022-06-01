@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable, throwError } from 'rxjs'; // new
 import { catchError, retry } from 'rxjs/operators';  //new
+import { Device } from './device';
 import { Product } from './product';
 
 
@@ -11,7 +12,7 @@ import { Product } from './product';
 })
 export class RemoteService {
  
-  private url:string = "http://10.176.132.159:3000/api/products";
+  private url:string = "http://10.176.132.159:3000/api/";
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -46,4 +47,8 @@ export class RemoteService {
     return this.http.delete(this.url+"/"+no);
   }
   
+createDevice(device:Device):any{
+return this.http.post<Device>(this.url+"Device",JSON.stringify(device),this.httpOptions)
+}
+
 }
