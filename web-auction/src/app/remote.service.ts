@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable, throwError } from 'rxjs'; // new
 import { catchError, retry } from 'rxjs/operators';  //new
-import { Product } from './product';
+import { Tree } from './tree';
 
 
 @Injectable({
@@ -11,7 +11,7 @@ import { Product } from './product';
 })
 export class RemoteService {
  
-  private url:string = "http://10.176.132.159:3000/api/products";
+  private url:string = "http://localhost:3000/api/trees";
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -25,25 +25,32 @@ export class RemoteService {
   }
 
   // get all products
-  getProducts():Observable<Product>{
-    return this.http.get<Product>(this.url);
+  getTrees():Observable<Tree>{
+    return this.http.get<Tree>(this.url);
   }
 
   // add a new product
-  createProduct(product: Product): Observable<Product> {
-    console.log("posting this product:" +product.no + " " +product.name + " " + product.price);
-    return this.http.post<Product>(this.url, JSON.stringify(product),this.httpOptions);
+  createTree(tree: Tree): Observable<Tree> {
+    console.log("posting this Tree:" +tree.TreeType + " " +tree.HumidityMin + 
+    " " + tree.HumidityMax + " " +tree.TempMin + " " +tree.TempMax+ 
+    " " + tree.UserId + " " + tree.BarCode);
+    return this.http.post<Tree>(this.url, JSON.stringify(tree),this.httpOptions);
   }
 
-  /*
-  updateProduct(product: Product): Observable<Product> {
-    console.log("updating this product:" +product.no + " " +product.name + " " + product.price);
-    return this.http.put<Product>(this.url, JSON.stringify(product),this.httpOptions);
+  
+  updateTree(tree: Tree): Observable<Tree> {
+    
+    console.log("updating this product:" +tree.TreeType + " " +tree.HumidityMin + 
+    " " + tree.HumidityMax + " " +tree.TempMin + " " +tree.TempMax+ 
+    " " + tree.UserId + " " + tree.BarCode);
+
+    return this.http.put<Tree>(this.url, JSON.stringify(tree),this.httpOptions);
   }
-  */
-  deleteProduct(no:number):any {
-    console.log("deleting this product: " +no );
-    return this.http.delete(this.url+"/"+no);
+  
+
+  deleteTree(No:number):any {
+    console.log("deleting this product: " +No );
+    return this.http.delete(this.url+"/"+No);
   }
   
 }

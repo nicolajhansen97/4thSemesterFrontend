@@ -8,20 +8,28 @@
           <th></th>
           <th></th>
     </tr>
-        <tr *ngFor="let product of products; index as i">
-            <td> <input [(ngModel)]="product.no" [readonly]='readOnly[i]'> </td>  
-            <td> <input [(ngModel)]="product.name" [readonly]='readOnly[i]'> </td>
-            <td> <input [(ngModel)]="product.price" [readonly]='readOnly[i]'> </td>
-            <td> <input [(ngModel)]="product.barCode" [readonly]='readOnly[i]'> </td>
+        <tr *ngFor="let tree of trees; index as i">
+            <td> <input [(ngModel)]="tree.No" readonly = true> </td> 
+            <td> <input [(ngModel)]="tree.TreeType" [readonly]='readOnly[i]'> </td>
+            <td> <input [(ngModel)]="tree.HumidityMin" [readonly]='readOnly[i]'> </td>
+            <td> <input [(ngModel)]="tree.HumidityMax" [readonly]='readOnly[i]'> </td>
+            <td> <input [(ngModel)]="tree.TempMin" [readonly]='readOnly[i]'> </td>
+            <td> <input [(ngModel)]="tree.TempMax" [readonly]='readOnly[i]'> </td>
+            <td> <input [(ngModel)]="tree.UserId" [readonly]='readOnly[i]'> </td>
+            <td> <input [(ngModel)]="tree.BarCode" [readonly]='readOnly[i]'> </td>
             <td> <button type="button" class="btn btn-warning"  (click) = 'edit(i)'>Edit</button> </td>
             <td> <button type="button" class="btn btn-secondary"  (click) = 'save(i)'>Save</button> </td>
             <td> <button type="button" class="btn btn-danger"  (click) = 'delete(i)'>Remove</button> </td>
         </tr>  
     <tr>
-            <td><input type="text" [(ngModel)]="defaultProduct.no"> </td>
-            <td><input type="text" [(ngModel)]="defaultProduct.name" ></td>
-            <td><input type="text" [(ngModel)]="defaultProduct.price"></td>
-            <td><input type="text" [(ngModel)]="defaultProduct.barCode"></td>
+           <!-- <td><input type="text" [(ngModel)]="defaultTree.No"> </td> -->
+            <td><input type="text" [(ngModel)]="defaultTree.TreeType" ></td>
+            <td><input type="text" [(ngModel)]="defaultTree.HumidityMin"></td>
+            <td><input type="text" [(ngModel)]="defaultTree.HumidityMax"></td>
+            <td><input type="text" [(ngModel)]="defaultTree.TempMin"></td>
+            <td><input type="text" [(ngModel)]="defaultTree.TempMax"></td>
+            <td><input type="text" [(ngModel)]="defaultTree.UserId"></td>
+            <td><input type="text" [(ngModel)]="defaultTree.BarCode"></td>
             <td> <button type="button" class="btn btn-primary" (click) ='create()' >Create this Product</button> </td>
     </tr>
 </table>

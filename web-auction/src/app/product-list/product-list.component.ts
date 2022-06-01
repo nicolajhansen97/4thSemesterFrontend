@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Product } from '../product';
-import { ProductService } from '../product.service';
+//import { ProductService } from '../product.service';
 import { RemoteService } from '../remote.service';
 
 @Component({
@@ -32,7 +32,7 @@ export class ProductListComponent implements OnInit,OnDestroy {
   }
 
   loadProducts() {
-    return this.remoteService.getProducts().subscribe((data: {}) => {
+    return this.remoteService.getTrees().subscribe((data: {}) => {
       this.products = data;
     });
   }
