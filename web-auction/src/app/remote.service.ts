@@ -44,7 +44,7 @@ export class RemoteService {
     " " + tree.HumidityMax + " " +tree.TempMin + " " +tree.TempMax+ 
     " " + tree.UserId + " " + tree.BarCode);
 
-    return this.http.put<Tree>(this.url, JSON.stringify(tree),this.httpOptions);
+    return this.http.put<Tree>(this.url+"/"+tree.No, JSON.stringify(tree),this.httpOptions);
   }
   
 

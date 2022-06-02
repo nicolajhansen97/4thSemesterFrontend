@@ -37,14 +37,15 @@ export class AdminComponent implements OnInit {
 
   edit(i:number):any{
      this.readOnly[i]=false;
-     // NOW THIS PRODUCT IS EDITABLE
   }
 
   save(i:number){
-    console.log("Tree to update:"+this.trees[i].No);
-    this.remoteService.updateTree(this.trees[i].No).subscribe((data: any) =>{
-      this.defaultTree = data.No;
-    });
+    console.log("Tree number: "+this.trees[i].No + " I number: " + i);
+    this.remoteService.updateTree(this.trees[i]).
+    subscribe(data => {
+    this.trees[i] = data;
+    this.trees = this.loadProducts();
+  });
   }
 
   delete(i:number){
@@ -56,19 +57,19 @@ export class AdminComponent implements OnInit {
     this.trees.splice(i,1); // removing one element at index i
   }
   create(){
-    console.log("Product to create:"+this.defaultTree.No);
-    this.createProduct();
+    //console.log("Product to create:"+this.defaultTree.No);
+    this.remoteService.createTree(this.defaultTree).
+    subscribe(data => {
+    this.defaultTree = data
+    this.trees = this.loadProducts()
+  });
     
     //updating the list
     this.trees.push(this.defaultTree);
-    //this.trees = this.loadProducts();
+    
 
   }
 
-  createProduct(){
-    this.remoteService.createTree(this.defaultTree).
-    subscribe(data => {
-    this.defaultTree = data});
- }
+
 }
 
