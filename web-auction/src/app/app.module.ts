@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import {MaterialExampleModule} from '../app/material/material.module';
 import {MatNativeDateModule} from '@angular/material/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {MatNativeDateModule} from '@angular/material/core';
     BrowserAnimationsModule,
     MatSliderModule,
     MaterialExampleModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
