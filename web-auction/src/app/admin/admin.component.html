@@ -2,11 +2,13 @@
 <table>
     <tr>
           <th>No</th>
-          <th>Name</th>
-          <th>Current Price</th>
-          <th></th>
-          <th></th>
-          <th></th>
+          <th>Tree type</th>
+          <th>Minimum Humidity</th>
+          <th>Maximum Humidity</th>
+          <th>Minimum Temperature</th>       
+          <th>Maximum Temperature</th>
+          <th>User ID</th>
+          <th>Barcode</th>
     </tr>
         <tr *ngFor="let tree of trees; index as i">
             <td> <input [(ngModel)]="tree.No" readonly = true> </td> 

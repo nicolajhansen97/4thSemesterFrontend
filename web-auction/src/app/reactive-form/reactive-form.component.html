@@ -1,20 +1,22 @@
 <div class="container">
-    <h1>Product Form (reactive driven) </h1>
-    <form [formGroup]="form">
+  <h1>Measure device (reactive driven) </h1>
+  <form [formGroup]="form">
+      <div class="form-group">
+          <div class="col-sm-12">
+            <label for="name" class="control-label">Barcode</label>
+            <input type="text" id="name" class="form-control" formControlName="name">
+          </div>
+        </div>
+      
         <div class="form-group">
-            <div class="col-sm-12">
-              <label for="name" class="control-label">Product name</label>
-              <input type="text" id="name" class="form-control" formControlName="name" [(ngModel)]="model.name" name="name">
-            </div>
+          <div class="col-sm-12">
+            <label for="price" class="control-label">Raspberry version</label>
+            <input type="price" id="price" class="form-control" formControlName="price">
           </div>
+        </div>
         
-          <div class="form-group">
-            <div class="col-sm-12">
-              <label for="price" class="control-label">Price</label>
-              <input type="price" id="price" class="form-control" formControlName="price">
-            </div>
-          </div>
-    
-    <button type="submit" class="btn btn-primary" [disabled]="!form.valid" >Submit</button>
+      
+  
+  <button type="submit" class="btn btn-primary" (click) = 'CreateDevice()' >Submit</button>
 </form>
 </div>
