@@ -1,49 +1,48 @@
 <h2>Items on auction:</h2>
 <table>
-    <tr>
-          <th>No</th>
-          <th>Tree type</th>
-          <th>Minimum Humidity</th>
-          <th>Maximum Humidity</th>
-          <th>Minimum Temperature</th>       
-          <th>Maximum Temperature</th>
-          <th>User ID</th>
-          <th>Barcode</th>
-    </tr>
-        <tr *ngFor="let tree of trees; index as i">
-            <td> <input [(ngModel)]="tree.No" readonly = true> </td> 
-            <td> <input [(ngModel)]="tree.TreeType" [readonly]='readOnly[i]'> </td>
-            <td> <input [(ngModel)]="tree.HumidityMin" [readonly]='readOnly[i]'> </td>
-            <td> <input [(ngModel)]="tree.HumidityMax" [readonly]='readOnly[i]'> </td>
-            <td> <input [(ngModel)]="tree.TempMin" [readonly]='readOnly[i]'> </td>
-            <td> <input [(ngModel)]="tree.TempMax" [readonly]='readOnly[i]'> </td>
-            <td> <input [(ngModel)]="tree.UserId" [readonly]='readOnly[i]'> </td>
-            <td> <input [(ngModel)]="tree.BarCode" [readonly]='readOnly[i]'> </td>
-            <td> <button type="button" class="btn btn-warning"  (click) = 'edit(i)'>Edit</button> </td>
-            <td> <button type="button" class="btn btn-secondary"  (click) = 'save(i)'>Save</button> </td>
-            <td> <button type="button" class="btn btn-danger"  (click) = 'delete(i)'>Remove</button> </td>
-        </tr>  
-    <tr>
-           <!-- <td><input type="text" [(ngModel)]="defaultTree.No"> </td> -->
-            <td><input type="text" [(ngModel)]="defaultTree.TreeType" ></td>
-            <td><input type="text" [(ngModel)]="defaultTree.HumidityMin"></td>
-            <td><input type="text" [(ngModel)]="defaultTree.HumidityMax"></td>
-            <td><input type="text" [(ngModel)]="defaultTree.TempMin"></td>
-            <td><input type="text" [(ngModel)]="defaultTree.TempMax"></td>
-            <td><input type="text" [(ngModel)]="defaultTree.UserId"></td>
-            <td><input type="text" [(ngModel)]="defaultTree.BarCode"></td>
-            <td> <button type="button" class="btn btn-primary" (click) ='create()' >Create this Product</button> </td>
-    </tr>
+  <tr>
+    <th>No</th>
+    <th>Tree type</th>
+    <th>Minimum Humidity</th>
+    <th>Maximum Humidity</th>
+    <th>Minimum Temperature</th>
+    <th>Maximum Temperature</th>
+    <th>User ID</th>
+    <th>Barcode</th>
+  </tr>
+  <tr *ngFor="let tree of trees; index as i">
+    <td> <input [(ngModel)]="tree.No" readonly=true> </td>
+    <td> <input [(ngModel)]="tree.TreeType" [readonly]='readOnly[i]'> </td>
+    <td> <input [(ngModel)]="tree.HumidityMin" [readonly]='readOnly[i]'> </td>
+    <td> <input [(ngModel)]="tree.HumidityMax" [readonly]='readOnly[i]'> </td>
+    <td> <input [(ngModel)]="tree.TempMin" [readonly]='readOnly[i]'> </td>
+    <td> <input [(ngModel)]="tree.TempMax" [readonly]='readOnly[i]'> </td>
+    <td> <input [(ngModel)]="tree.UserId" [readonly]='readOnly[i]'> </td>
+    <td> <input [(ngModel)]="tree.BarCode" [readonly]='readOnly[i]'> </td>
+    <td> <button type="button" class="btn btn-warning" (click)='edit(i)'>Edit</button> </td>
+    <td> <button type="button" class="btn btn-secondary" (click)='save(i)'>Save</button> </td>
+    <td> <button type="button" class="btn btn-danger" (click)='delete(i)'>Remove</button> </td>
+  </tr>
+  <tr>
+    <!-- <td><input type="text" [(ngModel)]="defaultTree.No"> </td> -->
+    <td><input type="text" [(ngModel)]="defaultTree.TreeType"></td>
+    <td><input type="text" [(ngModel)]="defaultTree.HumidityMin"></td>
+    <td><input type="text" [(ngModel)]="defaultTree.HumidityMax"></td>
+    <td><input type="text" [(ngModel)]="defaultTree.TempMin"></td>
+    <td><input type="text" [(ngModel)]="defaultTree.TempMax"></td>
+    <td><input type="text" [(ngModel)]="defaultTree.UserId"></td>
+    <td><input type="text" [(ngModel)]="defaultTree.BarCode"></td>
+    <td> <button type="button" class="btn btn-primary" (click)='create()'>Create this Product</button> </td>
+  </tr>
 </table>
 
 <div ngbDropdown class="dropdown">
-    <button ngbDropdownToggle class="btn btn-secondary" type="button" id="dropdownMenuButton1" aria-expanded="false">
-  Dropdown button
+  <button ngbDropdownToggle class="btn btn-secondary" type="button" id="dropdownMenuButton1" aria-expanded="false">
+    Dropdown button
   </button>
-    <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton1">
-      <li><a ngbDropdownItem href="#">Action</a></li>
-      <li><a ngbDropdownItem href="#">Another action</a></li>
-      <li><a ngbDropdownItem href="#">Something else here</a></li>
-    </ul>
-  </div>
-
+  <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton1">
+    <li><a ngbDropdownItem href="#">Action</a></li>
+    <li><a ngbDropdownItem href="#">Another action</a></li>
+    <li><a ngbDropdownItem href="#">Something else here</a></li>
+  </ul>
+</div>

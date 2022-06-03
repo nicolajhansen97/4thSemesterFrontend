@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Measuerments</h1>
+<div mat-dialog-content>
+  <table>
+    <tr>
+        <th>Tree No</th>
+        <th>BarCode</th>
+        <th>MeasuermentID</th>
+        <th>Humidity</th>
+        <th>Temperature</th>
+        <th>IsSoilWet</th>
+        <th>DateOFMes</th>
+      </tr>
+      <tr *ngFor="let mes of messes; index as i">
+        <td>
+          <p>{{mes.Treeno}}</p>
+        </td>
+        <td>
+          <p>testt</p>
+        </td>
+        <td><p>test</p></td>
+        <td><p>test</p></td>
+        <td><p>test</p></td>
+        <td><p>test</p></td>
+        <td><p>test</p></td>
+      </tr>
+  </table>
+</div>

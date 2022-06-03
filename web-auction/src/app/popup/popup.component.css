@@ -1,0 +1,12 @@
+table {
+    font-family: arial, sans-serif;
+    width: 50%;
+    background: transparent;
+  }
+  
+  td, th {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  

@@ -6,3 +6,34 @@
 .ng-invalid:not(form)  {
     border-left: 5px solid #a94442; /* red */
   }
+
+.container{
+  height: 50vh;
+  width: 30%;
+  margin-top: 3.5rem;
+}
+
+.List-Container{
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
+table {
+  font-family: arial, sans-serif;
+  width: 50%;
+  border: 3px solid green;
+  background: transparent;
+  background-color: #ededb5;
+}
+
+td, th {
+  text-align: left;
+  padding: 8px;
+}
+
+
+tr:nth-child(even) {
+  background-color: #f5f5dc;
+}

@@ -1,22 +1,43 @@
 <div class="container">
-  <h1>Measure device (reactive driven) </h1>
+  <h1>Create Measure device</h1>
   <form [formGroup]="form">
-      <div class="form-group">
-          <div class="col-sm-12">
-            <label for="name" class="control-label">Barcode</label>
-            <input type="text" id="name" class="form-control" formControlName="name">
-          </div>
+    <div class="form-group">
+      <div class="col-sm-12">
+        <label for="barcode" class="control-label">Barcode</label>
+        <input type="text" id="barcode" class="form-control">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-12">
+        <label for="raspberry_version" class="control-label">Raspberry version</label>
+        <div class="col-sm-11">
+          <input type="price" id="raspberry_version" class="form-control">
+          <button type="submit" class="btn btn-primary" (click)='CreateDevice()'>Submit</button>
         </div>
-      
-        <div class="form-group">
-          <div class="col-sm-12">
-            <label for="price" class="control-label">Raspberry version</label>
-            <input type="price" id="price" class="form-control" formControlName="price">
-          </div>
-        </div>
-        
-      
-  
-  <button type="submit" class="btn btn-primary" (click) = 'CreateDevice()' >Submit</button>
-</form>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="List-Container">
+  <table>
+    <tr>
+      <th>BarCode</th>
+      <th>Raspberry version</th>
+      <th>Working</th>
+    </tr>
+    <tr *ngFor="let device of devices; index as i">
+      <td>
+        <p>{{device.BarCode}}</p>
+      </td>
+      <td>
+        <p>{{device.RaspberryVer}}</p>
+      </td>
+      <td>
+        <p>{{device.Working}}</p>
+      </td>
+      <td><button (click)="deleteDataLogger(this.device,i)">Delete</button></td>
+      <td><button (click)="GetData(this.device,i)">Show Data</button></td>
+    </tr>
+  </table>
 </div>
