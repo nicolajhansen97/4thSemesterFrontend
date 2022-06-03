@@ -12,7 +12,8 @@ import { Tree } from './tree';
 })
 export class RemoteService {
 
-  private url: string = "http://localhost:3000/api/trees";
+  private urlTree: string = "http://localhost:3000/api/trees";
+  private urlDevice: string = "http://localhost:3000/api/Device";
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -27,7 +28,7 @@ export class RemoteService {
 
   // get all products
   getTrees(): Observable<Tree> {
-    return this.http.get<Tree>(this.url);
+    return this.http.get<Tree>(this.urlTree);
   }
 
   // add a new product
@@ -35,7 +36,7 @@ export class RemoteService {
     console.log("posting this Tree:" + tree.TreeType + " " + tree.HumidityMin +
       " " + tree.HumidityMax + " " + tree.TempMin + " " + tree.TempMax +
       " " + tree.UserId + " " + tree.BarCode);
-    return this.http.post<Tree>(this.url, JSON.stringify(tree), this.httpOptions);
+    return this.http.post<Tree>(this.urlTree, JSON.stringify(tree), this.httpOptions);
   }
 
 
@@ -45,21 +46,26 @@ export class RemoteService {
       " " + tree.HumidityMax + " " + tree.TempMin + " " + tree.TempMax +
       " " + tree.UserId + " " + tree.BarCode);
 
-    return this.http.put<Tree>(this.url + "/" + tree.No, JSON.stringify(tree), this.httpOptions);
+    return this.http.put<Tree>(this.urlTree + "/" + tree.No, JSON.stringify(tree), this.httpOptions);
   }
 
 
   deleteTree(No: number): any {
     console.log("deleting this product: " + No);
-    return this.http.delete(this.url + "/" + No);
+    return this.http.delete(this.urlTree + "/" + No);
+  }
+
+  getTree(No: number): any {
+    return this.http.get(this.urlTree+"/"+ No)
   }
 
   getDevices(): Observable<Device[]> {
-    return this.http.get<Device[]>(this.url + "Device")
+    return this.http.get<Device[]>(this.urlDevice)
   }
 
+
   createDevice(device: Device): any {
-    return this.http.post<Device>(this.url + "Device", JSON.stringify(device), this.httpOptions)
+    return this.http.post<Device>(this.urlDevice, JSON.stringify(device), this.httpOptions)
   }
 }
 
