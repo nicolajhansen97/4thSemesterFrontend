@@ -16,6 +16,8 @@ import { MatSliderModule } from '@angular/material/slider';
 import {MaterialExampleModule} from '../app/material/material.module';
 import {MatNativeDateModule} from '@angular/material/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PopupComponent } from './popup/popup.component';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AdminComponent,
     TemplateFormComponent,
     ReactiveFormComponent,
-    LogInComponentComponent
+    LogInComponentComponent,
+    PopupComponent
   ],
   imports: [
     BrowserModule,

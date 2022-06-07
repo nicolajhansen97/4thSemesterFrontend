@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs'; // new
 import { catchError, retry } from 'rxjs/operators';  //new
 import { Device } from './device';
+import { Measuerment } from './measuerment';
 import { Tree } from './tree';
 
 
@@ -15,8 +16,8 @@ export class RemoteService {
 
   private urlTree: string = "http://localhost:3000/api/trees";
   private urlDevice: string = "http://localhost:3000/api/Device";
+  private urlMeasuerment: string = "http://localhost:3000/api/Measuerment";
   private urlUnusedDevice: string = "http://localhost:3000/api/UnusedDevice";
-
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -80,6 +81,14 @@ export class RemoteService {
 
   createDevice(device: Device): any {
     return this.http.post<Device>(this.urlDevice, JSON.stringify(device), this.httpOptions)
+  }
+
+  DeleteDevice(barcode:string):any{
+    return this.http.delete<Device>(this.urlDevice+"/"+barcode)
+  }
+
+  GetMeasuerments():Observable<Measuerment[]>{
+    return this.http.get<Measuerment[]>(this.urlMeasuerment)
   }
 
 }
