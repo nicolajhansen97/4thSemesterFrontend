@@ -7,6 +7,7 @@ import { Device } from './device';
 import { Tree } from './tree';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,6 +16,7 @@ export class RemoteService {
   private urlTree: string = "http://localhost:3000/api/trees";
   private urlDevice: string = "http://localhost:3000/api/Device";
   private urlUnusedDevice: string = "http://localhost:3000/api/UnusedDevice";
+
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -79,6 +81,7 @@ export class RemoteService {
   createDevice(device: Device): any {
     return this.http.post<Device>(this.urlDevice, JSON.stringify(device), this.httpOptions)
   }
+
 }
 
 
