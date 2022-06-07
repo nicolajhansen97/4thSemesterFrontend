@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { DefaultIterableDiffer, Injectable } from '@angular/core';
 
 import { Observable, throwError } from 'rxjs'; // new
 import { catchError, retry } from 'rxjs/operators';  //new
@@ -81,6 +81,10 @@ export class RemoteService {
 
   createDevice(device: Device): any {
     return this.http.post<Device>(this.urlDevice, JSON.stringify(device), this.httpOptions)
+  }
+
+  GetDevice(BarCode: string): Observable<Device>{
+    return this.http.get<Device>(this.urlDevice+"/"+BarCode)
   }
 
   DeleteDevice(barcode:string):any{
