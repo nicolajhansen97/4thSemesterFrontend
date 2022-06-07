@@ -25,9 +25,9 @@
               {{tree.BarCode}}
               </button>
                 <ul ngbDropdownMenu aria-labelledby="dropdownMenuButton1" >
-                   
-                  <li><a *ngFor="let dataLogger of dataLoggers; index as j" ngbDropdownItem (click)="onClick(this.dataLogger, i)">{{dataLogger.BarCode}}</a></li>
-               
+                  <div *ngFor="let dataLogger of dLUnpaired; index as j">
+                    <li><a ngbDropdownItem (click)="onClick(this.dataLogger, i)">{{dataLogger.BarCode}}</a></li>
+                  </div>
                 </ul>
               </div>
             </td>

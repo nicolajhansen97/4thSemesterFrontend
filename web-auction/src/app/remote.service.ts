@@ -14,6 +14,7 @@ export class RemoteService {
 
   private urlTree: string = "http://localhost:3000/api/trees";
   private urlDevice: string = "http://localhost:3000/api/Device";
+  private urlUnusedDevice: string = "http://localhost:3000/api/UnusedDevice";
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -63,6 +64,17 @@ export class RemoteService {
     return this.http.get<Device[]>(this.urlDevice)
   }
 
+  updateDevice(device: Device): Observable<Device> {
+
+    console.log("updating this product:" + device.BarCode + " " + device.RaspberryVer +
+      " " + device.Working + " " + device.IsPaired);
+
+    return this.http.put<Device>(this.urlDevice + "/" + device.BarCode, JSON.stringify(device), this.httpOptions);
+  }
+
+  getUnusedDevices(): Observable<Device[]> {
+    return this.http.get<Device[]>(this.urlUnusedDevice)
+  }
 
   createDevice(device: Device): any {
     return this.http.post<Device>(this.urlDevice, JSON.stringify(device), this.httpOptions)

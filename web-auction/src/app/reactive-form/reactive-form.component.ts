@@ -21,7 +21,7 @@ export class ReactiveFormComponent implements OnInit {
       price: [null, [Validators.required, this.rangeValidator(10, 10000)]],
     });
 
-    this.defualtDevice = new Device("1001", "1");
+    this.defualtDevice = new Device("1001", "1", true, false);
 
   }
 
