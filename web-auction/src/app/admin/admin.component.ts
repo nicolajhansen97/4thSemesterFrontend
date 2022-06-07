@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../product';
+//import { Product } from '../product';
+import { Tree } from '../tree'
 import {RemoteService} from '../remote.service';
+import { Device } from '../device';
+
 
 @Component({
   selector: 'app-admin',
@@ -9,18 +12,26 @@ import {RemoteService} from '../remote.service';
 })
 export class AdminComponent implements OnInit {
 
-  public products:any = [];
+  public trees:any = [];
+  public dataLoggers: any = [];
+  public dLUnpaired: any = [];
+  public dLpaired: any = [];
+  public treeTemp: any;
   public readOnly:Array<Boolean>;
-  public defaultProduct:Product;
+  public defaultTree:Tree;
+  public unpairedTreeDevice = new Map<Tree, Device>();
+
 
   constructor(private remoteService:RemoteService) { 
    
     this.readOnly = new Array();
-    for (let i:number=0;i < this.products.length; i++){
+    for (let i:number=0;i < this.trees.length; i++){
       this.readOnly.push(true);      
     }
-    this.defaultProduct = new Product(1,'product',100, '0000000000000');
+    this.defaultTree = new Tree('No', 'Type',0,0,0,0, 'UserID','Barcode');
+    
     this.loadProducts();
+    this.loadDataloggers();
   }
 
 
@@ -28,43 +39,118 @@ export class AdminComponent implements OnInit {
 
   }
 
-  loadProducts() {
-    return this.remoteService.getProducts().subscribe((data: {}) => {
-      this.products = data;
+  loadDataloggers(){
+    this.remoteService.getDevices().subscribe((data: {}) => {
+      this.dataLoggers = data;
+      this.makeUnPairedDLList();
+      this.makePairedDLList()
+    })
+  }
+ 
+  makeUnPairedDLList(){
+    this.dataLoggers.forEach((element: any) => {
+      if(element.IsPaired == false)
+        this.dLUnpaired.push(element);
     });
+    //alert(JSON.stringify(this.dLUnpaired[0]));
+  }
+  
+
+  makePairedDLList(){
+    this.dataLoggers.forEach((element: any) => {
+      if(element.IsPaired == true)
+        this.dLpaired.push(element);
+    });
+    //alert(JSON.stringify(this.dLUnpaired[0]));
+  }
+
+  onClick(device: any, i: number){
+    
+   
+    for(const o of this.dLpaired){
+      if(o.BarCode == this.trees[i].BarCodey){
+        o.IsPaired = false;  
+        this.unpairedTreeDevice.set(this.trees[i], o);
+        //alert(o.IsPaired.toString() + " | " + o.BarCode)
+      }
+    };
+
+    device.IsPaired = true;
+    this.dLpaired.push(device)
+    this.trees[i].BarCode = device.BarCode;
+    //alert(device.IsPaired.toString() + " | " + device.BarCode)  
+    //this.loadDataloggers(); 
+  }
+
+  loadProducts() {
+    return this.remoteService.getTrees().subscribe((data: {}) => {
+      this.trees = data;
+    });
+  }
+
+  async loadTree(i:number):Promise<Tree>{
+    return await this.remoteService.getTree(this.trees[i].No).toPromise()
+    alert(JSON.stringify(this.trees[i]))
   }
 
   edit(i:number):any{
      this.readOnly[i]=false;
-     // NOW THIS PRODUCT IS EDITABLE
   }
 
-  save(i:number):any{
-    console.log("Product to update:"+this.products[i].name);
-    // DO STUFF VIA THE REMOTE SERVICE -> UPDATE PRODUCT
+  save(i:number){
+    const item = this.unpairedTreeDevice.get(this.trees[i]);
+      if (item !== undefined) {
+        this.updateDatalogger(item);;
+      } else {
+        throw new Error('Item is undefined');
+      }
+
+    console.log("Tree number: "+this.trees[i].No + " I number: " + i);
+    this.remoteService.updateTree(this.trees[i]).
+    subscribe(data => {
+    data;
+    this.updateDLTreePair(this.trees[i]);
+    });   
+  }
+
+  updateDLTreePair(tree: Tree){
+    for(const o of this.dLpaired){
+      if(o.BarCode == tree.BarCode){
+       this.updateDatalogger(o);
+      }
+    };
+  }
+
+  updateDatalogger(device: Device){
+    this.remoteService.updateDevice(device).subscribe(data => {data; });
   }
 
   delete(i:number){
-    console.log("Product to delete: "+this.products[i].name);
+    console.log("Tree to delete: "+this.trees[i].No);
   
-    this.remoteService.deleteProduct(this.products[i].no).subscribe((data: any) => {
+    this.remoteService.deleteTree(this.trees[i].No).subscribe((data: any) => {
       data});
 
-    this.products.splice(i,1); // removing one element at index i
-  }
-  create(){
-    console.log("Product to create:"+this.defaultProduct.name);
-    this.createProduct();
-    
-    // updating the list
-    this.products.push(this.defaultProduct);
-  
+    this.trees.splice(i,1); // removing one element at index i
   }
 
-  createProduct(){
-    this.remoteService.createProduct(this.defaultProduct).
+  create(){
+    let max = 0;
+    for(const o of this.trees){
+      if(Number(o.No) > max){
+         max = Number(o.No);
+      }
+    };
+    max++;
+
+    this.defaultTree.No = max.toString();
+    //console.log("Product to create:"+this.defaultTree.No);
+    this.remoteService.createTree(this.defaultTree).
     subscribe(data => {
-     this.defaultProduct = data});
- }
+      this.trees.push(data);
+    });
+  }
+
+  
 }
 

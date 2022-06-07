@@ -1,20 +1,21 @@
-  <div style="text-align:center">
-    <h1>
-      Welcome to the Auction!
-    </h1> 
-  </div>
-  
-  <div class ="links">
-    <span> <a routerLink="/items" routerLinkActive="active">
-       Go to Products
-    </a></span>
-    <span> <a routerLink="/game" routerLinkActive="active">
-      Go to the Game
-   </a></span>
-   <span> <a routerLink="/admin" routerLinkActive="active">
-    Go to Admin
+<header class="header">
+  <div class="logo">
+    <img [src] = "picture" alt="test" width="200" height="100"/>
+     </div>
+     <div class="nav">
+
+<div class ="links">
+  <span> <a routerLink="/items" routerLinkActive="active">
+    ???
   </a></span>
-  </div>
-  
-  <router-outlet></router-outlet>
-  
+  <span> <a routerLink="/game" routerLinkActive="active">
+  Measure Device Setup
+ </a></span>
+ <span> <a routerLink="/admin" routerLinkActive="active">
+  Plant administration
+</a></span>
+</div>
+</div>
+</header>
+
+<router-outlet></router-outlet>
