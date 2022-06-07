@@ -41,7 +41,6 @@ export class ReactiveFormComponent implements OnInit {
       },
     });
   }
-
   LoadDevices() {
     this.remoteService.getDevices().subscribe(
       data => { this.devices = JSON.parse(JSON.stringify(data)); }
