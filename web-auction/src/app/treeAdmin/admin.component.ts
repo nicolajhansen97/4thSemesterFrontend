@@ -38,6 +38,9 @@ export class AdminComponent implements OnInit {
 
   }
 
+  /**
+   * Load the dataloggers through remote service, then make unpaired datalogger list
+   */
   loadDataloggers(){
     this.remoteService.getDevices().subscribe((data: {}) => {
       this.dataLoggers = data;
@@ -45,6 +48,10 @@ export class AdminComponent implements OnInit {
     })
   }
  
+  /**
+   * This method checks the datalogger list against the tree list to check with bar
+   * codes does not belong to a tree, then it makes a list of them
+   */
   makeUnPairedDLList(){
     let isThere: boolean;
     this.dLUnpaired.length = 0;
@@ -61,29 +68,37 @@ export class AdminComponent implements OnInit {
     });
   }
   
-
+  /**
+   * This method sets the selected trees barcode to the newly selected devices 
+   * barcode, then it loads the dataloggers again to update the selectable list
+   * @param device The device selected from the dropdown
+   * @param i The index of the tree list from html ng loop
+   */
   onClick(device: any, i: number){
     this.trees[i].BarCode = device.BarCode;
     this.loadDataloggers(); 
   }
 
+  /**
+   * Loads all trees from the tree table in mongodb
+   * @returns A list of tree objects
+   */
   loadProducts() {
     return this.remoteService.getTrees().subscribe((data: {}) => {
       this.trees = data;
     });
   }
 
-  async loadTree(i:number):Promise<Tree>{
-    return await this.remoteService.getTree(this.trees[i].No).toPromise()
-    alert(JSON.stringify(this.trees[i]))
-  }
-
   edit(i:number):any{
      this.readOnly[i]=false;
   }
 
+  /**
+   * Here we save the update the selected tree through remote service, api
+   * to mongoDB
+   * @param i The index of the tree list from html ng loop
+   */
   save(i:number){
-
     console.log("Tree number: "+this.trees[i].No + " I number: " + i);
     this.remoteService.updateTree(this.trees[i]).
     subscribe(data => {
@@ -91,6 +106,10 @@ export class AdminComponent implements OnInit {
     });   
   }
 
+  /**
+   * Deletes are selected tree and then updates the list of dataloggers
+   * @param i The index of the tree list from html ng loop
+   */
   delete(i:number){
     console.log("Tree to delete: "+this.trees[i].No);
   
@@ -98,8 +117,15 @@ export class AdminComponent implements OnInit {
       data});
 
     this.trees.splice(i,1); // removing one element at index i
+    this.loadDataloggers(); 
   }
 
+  /**
+   * Creates a new tree in the mongoDB, based on the current value of the 
+   * tree instance. 
+   * Before that the highest tree number is found and the new tree get a number 
+   * one higher
+   */
   create(){
     let max = 0;
     for(const o of this.trees){
