@@ -9,7 +9,7 @@ import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { PopupComponent } from '../popup/popup.component';
 
 export interface DialogData {
-  test: any;
+  test: Measuerment[];
 }
 
 @Component({
@@ -37,7 +37,7 @@ export class ReactiveFormComponent implements OnInit {
   openDialog() {
      this.dialog.open(PopupComponent, {
       data: {
-        test: this.data1
+        test: this.data2
       },
     });
   }
@@ -52,7 +52,8 @@ export class ReactiveFormComponent implements OnInit {
     let tempDevice: Device = {
       "BarCode": "",
       "RaspberryVer": "",
-      "Working": true
+      "Working": true,
+      "IsPaired":false
     };
     const BarCode = document.getElementById('barcode') as HTMLInputElement
     tempDevice.BarCode = BarCode.value
@@ -112,19 +113,19 @@ export class ReactiveFormComponent implements OnInit {
   }
 
   public mes: any = [];
-  public data1: string = ''
+  public data2: Measuerment[] = []
 
   ShowData(device: Device) {
     let gottenData: any = this.mes;
     //alert(JSON.stringify(gottenData))
     gottenData.forEach((element: Measuerment) => {
       if (element.Barcode == device.BarCode) {
-        this.data1 += JSON.stringify(element)
+        this.data2.push(element) //+= JSON.stringify(element)
       }
     });
 
-    
     this.openDialog()
+    this.data2 = []
   }
   ngOnInit(): void { }
 }

@@ -8,7 +8,8 @@ export class Tree {
         public TempMin:number,
         public TempMax:number,
         public UserId:string,
-        public BarCode: string
+        public BarCode: string,
+        public ImageSrc?: Buffer
         ){
 
     }

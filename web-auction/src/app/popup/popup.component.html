@@ -1,4 +1,5 @@
 <h1 mat-dialog-title>Measuerments</h1>
+<button (click)="UpdateToDataLogger()">test</button>
 <div mat-dialog-content>
   <table>
     <tr>
@@ -15,13 +16,13 @@
           <p>{{mes.Treeno}}</p>
         </td>
         <td>
-          <p>testt</p>
+          <p>{{mes.Barcode}}</p>
         </td>
-        <td><p>test</p></td>
-        <td><p>test</p></td>
-        <td><p>test</p></td>
-        <td><p>test</p></td>
-        <td><p>test</p></td>
+        <td><p>{{mes.MeasuermentID}}</p></td>
+        <td><p>{{mes.Humidity}}</p></td>
+        <td><p>{{mes.Temperature}}</p></td>
+        <td><p>{{mes.IsSoilWet}}</p></td>
+        <td><p>{{mes.DateOfMes}}</p></td>
       </tr>
   </table>
 </div>
