@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Device } from '../device';
-import { Product } from '../product';
 import { RemoteService } from '../remote.service';
 
 @Component({
