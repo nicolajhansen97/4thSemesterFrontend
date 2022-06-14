@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-//import { Product } from '../product';
 import { Tree } from '../tree'
 import {RemoteService} from '../remote.service';
 import { Device } from '../device';
@@ -15,20 +14,10 @@ export class AdminComponent implements OnInit {
   public trees:any = [];
   public dataLoggers: any = [];
   public dLUnpaired: any = [];
-  public treeTemp: any;
-  public readOnly:Array<Boolean>;
   public defaultTree:Tree;
 
-
-
   constructor(private remoteService:RemoteService) { 
-   
-    this.readOnly = new Array();
-    for (let i:number=0;i < this.trees.length; i++){
-      this.readOnly.push(true);      
-    }
     this.defaultTree = new Tree('No', 'Type',0,0,0,0, 'UserID','Barcode');
-    
     this.loadProducts();
     this.loadDataloggers();
   }
@@ -89,10 +78,6 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  edit(i:number):any{
-     this.readOnly[i]=false;
-  }
-
   /**
    * Here we save the update the selected tree through remote service, api
    * to mongoDB
@@ -112,10 +97,8 @@ export class AdminComponent implements OnInit {
    */
   delete(i:number){
     console.log("Tree to delete: "+this.trees[i].No);
-  
     this.remoteService.deleteTree(this.trees[i].No).subscribe((data: any) => {
       data});
-
     this.trees.splice(i,1); // removing one element at index i
     this.loadDataloggers(); 
   }

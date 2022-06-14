@@ -44,11 +44,9 @@ export class RemoteService {
 
   //Update a tree
   updateTree(tree: Tree): Observable<Tree> {
-
     console.log("updating this product:" + tree.TreeType + " " + tree.HumidityMin +
       " " + tree.HumidityMax + " " + tree.TempMin + " " + tree.TempMax +
       " " + tree.UserId + " " + tree.BarCode);
-
     return this.http.put<Tree>(this.urlTree + "/" + tree.No, JSON.stringify(tree), this.httpOptions);
   }
 
