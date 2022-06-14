@@ -29,8 +29,7 @@ export class PopupComponent implements OnInit {
       let data: Device = {
         BarCode: "",
         RaspberryVer: "",
-        Working: true,
-        IsPaired: false
+        Working: true
       }
 
       this.remoteService.GetDevice(Mes.Barcode).subscribe((response: Device) => {
@@ -46,8 +45,7 @@ export class PopupComponent implements OnInit {
     const UpdatedDevice: Device = {
       BarCode: data.BarCode,
       RaspberryVer: data.RaspberryVer,
-      Working: false,
-      IsPaired: data.IsPaired
+      Working: false
     }
 
     this.remoteService.updateDevice(UpdatedDevice).subscribe((data) => { data; });
