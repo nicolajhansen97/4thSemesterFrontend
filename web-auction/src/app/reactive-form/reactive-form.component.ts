@@ -3,7 +3,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Device } from '../device';
 import { Measuerment } from '../measuerment';
-import { Product } from '../product';
 import { RemoteService } from '../remote.service';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { PopupComponent } from '../popup/popup.component';
