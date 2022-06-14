@@ -25,6 +25,7 @@ export class ReactiveFormComponent implements OnInit {
     "RaspberryVer": "4.0",
     "Working": true
   }];
+  defualtDevice!: Device;
 
   constructor(private formBuilder: FormBuilder, private remoteService: RemoteService, public dialog: MatDialog) {
     this.form = this.formBuilder.group({
@@ -45,6 +46,8 @@ export class ReactiveFormComponent implements OnInit {
     this.remoteService.getDevices().subscribe(
       data => { this.devices = JSON.parse(JSON.stringify(data)); }
     )
+
+    this.defualtDevice = new Device("1001", "1", true);
   }
 
 
@@ -52,8 +55,7 @@ export class ReactiveFormComponent implements OnInit {
     let tempDevice: Device = {
       "BarCode": "",
       "RaspberryVer": "",
-      "Working": true,
-      "IsPaired":false
+      "Working": true
     };
     const BarCode = document.getElementById('barcode') as HTMLInputElement
     tempDevice.BarCode = BarCode.value
